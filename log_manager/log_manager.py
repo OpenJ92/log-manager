@@ -13,6 +13,8 @@ class LogManager:
             cls._instance.max_buffer_size = max_buffer_size
             cls._instance._lock = Lock()
 
+            cls._instance._total
+
             # Register a finalizer to flush remaining logs
             weakref.finalize(cls._instance, cls._finalize)
 
@@ -38,9 +40,9 @@ class LogManager:
             if key not in self.logs:
                 self.logs[key] = []
             self.logs[key].append(log_entry)
+            self._total += 1
 
-            total_logs = sum(len(v) for v in self.logs.values())
-            if total_logs >= self.max_buffer_size:
+            if self._total >= self.max_buffer_size:
                 await self.flush_logs()
 
     async def flush_logs(self):
@@ -54,6 +56,7 @@ class LogManager:
             try:
                 await self._injection_manager.inject(self.logs, session)
                 self.logs.clear()
+                self._total = 0
             except Exception as e:
                 await session.rollback()
                 raise e
