@@ -4,12 +4,12 @@ with open("requirements.txt", "r") as f:
     requirements = f.read().splitlines()
 
 setup(
-    name="log-manager",
+    name="batch-log-manager",
     version="0.1.0",
     packages=find_packages(),
     install_requires=requirements,
-    author="Your Name",
-    author_email="your.email@example.com",
+    author="Jacob Vartuli-Schonberg",
+    author_email="jacob.vartuli.92@gmail.com",
     description="A Python package for managing logs.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
