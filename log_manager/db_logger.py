@@ -1,6 +1,8 @@
 from functools import wraps
 import traceback
 
+from log_manager.typeclass.logging_operations import LoggingOperations
+
 
 def db_logger(action_name: str, logger: LoggingOperations):
     """

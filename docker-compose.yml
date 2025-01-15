@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  log-manager:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: log-manager
+    volumes:
+      - .:/app  # Sync the current directory with the container for live editing
+    environment:
+      - PYTHONUNBUFFERED=1
+    tty: true  # Keep the container running for interactive sessions
+

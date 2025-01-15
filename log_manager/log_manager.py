@@ -1,7 +1,7 @@
 import weakref
 from asyncio import Lock
 
-class LogManager:
+class BatchLogManager:
     _instance = None
 
     def __new__(cls, injection_manager=None, session_factory=None, max_buffer_size=100):
